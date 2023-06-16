@@ -8,8 +8,9 @@ import ReactPlayer from "react-player";
 
 function ParticipantView(props) {
   const micRef = useRef(null);
-  const { webcamStream, micStream, webcamOn, micOn, isLocal, displayName } =
-    useParticipant(props.participantId);
+  const { webcamStream, micStream, webcamOn, micOn, isLocal } = useParticipant(
+    props.participantId
+  );
 
   const videoStream = useMemo(() => {
     if (webcamOn && webcamStream) {
@@ -77,7 +78,7 @@ function MeetingView() {
 
   return (
     <div className="container">
-      {joined && joined == "JOINED" ? (
+      {joined && joined === "JOINED" ? (
         <div>
           {[...participants.keys()].map((participantId) => (
             <ParticipantView
@@ -86,7 +87,7 @@ function MeetingView() {
             />
           ))}
         </div>
-      ) : joined && joined == "JOINING" ? (
+      ) : joined && joined === "JOINING" ? (
         <p>Joining the meeting...</p>
       ) : (
         <button onClick={joinMeeting}>Join the meeting</button>
